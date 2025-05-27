@@ -1,7 +1,229 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
+import { motion, AnimatePresence } from 'framer-motion';
 import './partials/HomePage.css';
+
+const AboutAnimation = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const container = {
+        display: "flex",
+        flexDirection: "column",
+        width: 340,
+        minHeight: 220,
+        position: "relative",
+        margin: "0 auto",
+        alignItems: 'center',
+        justifyContent: 'center',
+    };
+    const button = {
+        background: "#23232b",
+        borderRadius: "16px",
+        padding: "16px 36px",
+        color: "#fff",
+        position: "relative",
+        margin: '12px auto 0 auto',
+        border: "none",
+        cursor: "pointer",
+        fontWeight: "700",
+        fontSize: "18px",
+        letterSpacing: 1,
+        boxShadow: "0 4px 24px 0 rgba(0,0,0,0.28)",
+        transition: "all 0.22s cubic-bezier(.4,2,.6,1)",
+        zIndex: 22,
+        outline: 'none',
+        display: 'block',
+    };
+    const overlay = {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        background: "rgba(10,10,20,0.82)",
+        zIndex: 20,
+        backdropFilter: 'blur(3px)',
+        pointerEvents: isVisible ? "auto" : "none"
+    };
+    const aboutContainer = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 56,
+        marginTop: 24,
+        zIndex: 30,
+        position: 'relative',
+        minHeight: 260,
+        minWidth: 700,
+        maxWidth: 900,
+        transition: 'min-width 0.3s, min-height 0.3s',
+    };
+    const photoWrapper = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 180,
+        height: 180,
+        borderRadius: '50%',
+        background: '#23232b',
+        padding: 3,
+        boxShadow: '0 0 32px 0 #23232b44',
+        position: 'relative',
+    };
+    const aboutPhoto = {
+        width: 168,
+        height: 168,
+        borderRadius: '50%',
+        overflow: 'hidden',
+        background: '#18181c',
+        boxShadow: '0 0 0 0 #0000, 0 8px 40px rgba(0,0,0,0.28)',
+        border: '2.5px solid #23232b',
+        transition: 'box-shadow 0.3s, transform 0.3s',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    };
+    const aboutContent = {
+        minWidth: 340,
+        maxWidth: 600,
+        color: '#f3f3f3',
+        background: '#18181c',
+        borderRadius: 24,
+        padding: 48,
+        boxShadow: '0 8px 32px rgba(0,0,0,0.22)',
+        backdropFilter: 'blur(8px)',
+        border: '1.5px solid #444',
+    };
+    const cvBtn = {
+        display: 'inline-block',
+        marginTop: 20,
+        padding: '12px 28px',
+        background: '#23232b',
+        color: '#fff',
+        borderRadius: 10,
+        fontWeight: 700,
+        textDecoration: 'none',
+        fontSize: 16,
+        boxShadow: '0 4px 18px rgba(0,0,0,0.18)',
+        border: 'none',
+        transition: 'all 0.18s cubic-bezier(.4,2,.6,1)',
+    };
+    const showButton = {
+        ...button,
+        margin: '0 auto 0 auto',
+    };
+    const hideButton = {
+        ...button,
+        margin: '0 auto 0 auto',
+    };
+    return (
+        <div style={container}>
+            <AnimatePresence>
+                {isVisible && (
+                    <motion.div
+                        key="overlay"
+                        style={overlay}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.45, ease: "easeInOut" }}
+                    />
+                )}
+            </AnimatePresence>
+            <AnimatePresence initial={false}>
+                {!isVisible && (
+                    <motion.button
+                        key="show"
+                        style={showButton}
+                        onClick={() => setIsVisible(true)}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.3 }}
+                        whileTap={{ y: 2, scale: 0.97 }}
+                        whileHover={{
+                            background: "#444",
+                            boxShadow: "0 8px 32px 0 #4448",
+                            letterSpacing: 2,
+                        }}
+                    >
+                        Afficher
+                    </motion.button>
+                )}
+            </AnimatePresence>
+            <AnimatePresence>
+                {isVisible && (
+                    <motion.div
+                        key="about-content"
+                        style={aboutContainer}
+                        initial={{ opacity: 0, y: 40, scale: 0.85, boxShadow: '0 0 0 0 #0000' }}
+                        animate={{ opacity: 1, y: 0, scale: 1, boxShadow: '0 8px 32px 0 #0008' }}
+                        exit={{ opacity: 0, y: 40, scale: 0.85, boxShadow: '0 0 0 0 #0000' }}
+                        transition={{ type: 'spring', stiffness: 80, damping: 18 }}
+                    >
+                        <div style={photoWrapper}>
+                            <motion.div
+                                style={aboutPhoto}
+                                whileHover={{
+                                    boxShadow: '0 0 0 10px #ccc8, 0 16px 48px #4448',
+                                    transform: 'translateY(-6px) scale(1.04)',
+                                }}
+                                transition={{ type: 'spring', stiffness: 180 }}
+                            >
+                                <img
+                                    src="https://randomuser.me/api/portraits/men/32.jpg"
+                                    alt="Portrait Zyad Fiach"
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+                                />
+                            </motion.div>
+                        </div>
+                        <motion.div style={aboutContent}
+                            initial={{ opacity: 0, x: 40 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 40 }}
+                            transition={{ duration: 0.7, delay: 0.18 }}
+                        >
+                            <h3 style={{ fontSize: 32, fontWeight: 800, marginBottom: 16, color: '#fff', letterSpacing: 1, marginTop: 12 }}>À propos de moi</h3>
+                            <p style={{ fontSize: 19, lineHeight: 1.7, color: '#ccc', marginBottom: 0 }}>
+                                Passionné par le développement web, je suis un développeur full stack junior avec une forte appétence pour les interfaces épurées, la logique métier et l'optimisation des process. J'aime apprendre, collaborer et relever de nouveaux défis techniques.
+                            </p>
+                            <motion.a
+                                href="file:///C:/Users/lionsgeek/Downloads/cv%20zyad%20fiach.pdf"
+                                style={cvBtn}
+                                download
+                                whileHover={{ scale: 1.08, boxShadow: "0 8px 32px #1a237e55" }}
+                                whileTap={{ scale: 0.97 }}
+                            >
+                                Télécharger mon CV
+                            </motion.a>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+            <AnimatePresence initial={false}>
+                {isVisible && (
+                    <motion.button
+                        key="hide"
+                        style={hideButton}
+                        onClick={() => setIsVisible(false)}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                        whileTap={{ y: 2, scale: 0.97 }}
+                        whileHover={{
+                            background: "#444",
+                            boxShadow: "0 8px 32px 0 #4448",
+                            letterSpacing: 2,
+                        }}
+                    >
+                        Masquer
+                    </motion.button>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
 
 const HomePage = () => {
     const particlesInit = useCallback(async (engine) => {
@@ -67,20 +289,7 @@ const HomePage = () => {
             <section className="quote" id="quote">
                 {/* Citation inspirante ici */}
             </section>
-            <section className="about" id="about">
-                <div className="about-container">
-                    <div className="about-photo">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Portrait Zyad Fiach" />
-                    </div>
-                    <div className="about-content">
-                        <h3>À propos de moi</h3>
-                        <p>
-                            Passionné par le développement web, je suis un développeur full stack junior avec une forte appétence pour les interfaces épurées, la logique métier et l'optimisation des process. J'aime apprendre, collaborer et relever de nouveaux défis techniques.
-                        </p>
-                        <a href="/cv-zyad-fiach.pdf" className="cv-btn" download>Télécharger mon CV</a>
-                    </div>
-                </div>
-            </section>
+            <AboutAnimation />
             <section className="contact" id="contact">
                 {/* Bloc contact/footer ici */}
             </section>
