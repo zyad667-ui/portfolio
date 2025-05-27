@@ -34,14 +34,38 @@ const ContactSection = () => {
         }, 2000);
     };
 
+
     const socialLinks = [
-        { name: 'LinkedIn', icon: Linkedin, url: '#', handle: '@forkanimahdi', color: '#0077b5' },
-        { name: 'Instagram', icon: Instagram, url: '#', handle: '@forkanimahdi', color: '#e1306c' },
-        { name: 'Twitter', icon: Twitter, url: '#', handle: '@forkanimahdi', color: '#1da1f2' },
-        { name: 'GitHub', icon: Github, url: '#', handle: '@forkanimahdi', color: '#333' }
+        {
+            name: 'LinkedIn',
+            icon: Linkedin,
+            url: 'https://www.linkedin.com/in/zyad-fiach-708823224/', 
+            handle: '@zyad fiach',
+            color: '#0077b5'
+        },
+        {
+            name: 'Instagram',
+            icon: Instagram,
+            url: 'https://www.instagram.com/zyad.fiach', 
+            handle: '@zyad fiach',
+            color: '#e1306c'
+        },
+        {
+            name: 'Twitter',
+            icon: Twitter,
+            url: 'https://x.com/ZFiach', 
+            handle: '@zyad fiach',
+            color: '#1da1f2'
+        },
+        {
+            name: 'GitHub',
+            icon: Github,
+            url: 'https://github.com/zyad667-ui', 
+            handle: '@zyad fiach',
+            color: '#333'
+        }
     ];
 
-    // Styles
     const containerStyle = {
         minHeight: '100vh',
         background: '#111',
@@ -117,8 +141,9 @@ const ContactSection = () => {
         border: `1.5px solid ${color}`,
         textDecoration: 'none',
         color: '#fff',
-        transition: 'box-shadow 0.2s, border 0.2s',
-        boxShadow: '0 2px 12px #0004'
+        transition: 'box-shadow 0.2s, border 0.2s, transform 0.2s',
+        boxShadow: '0 2px 12px #0004',
+        cursor: 'pointer'
     });
 
     return (
@@ -131,7 +156,7 @@ const ContactSection = () => {
             </div>
             <div style={sectionStyle}>
                 {/* Formulaire */}
-                <form style={formStyle} onSubmit={handleSubmit} autoComplete="off">
+                <div style={formStyle}>
                     <div style={fieldWrapper}>
                         <User style={iconStyle} />
                         <input
@@ -191,7 +216,7 @@ const ContactSection = () => {
                             rows={5}
                         />
                     </div>
-                    <button type="submit" style={buttonStyle} disabled={isSubmitting}>
+                    <button type="submit" style={buttonStyle} disabled={isSubmitting} onClick={handleSubmit}>
                         {isSubmitting ? (
                             <span>Envoi...</span>
                         ) : (
@@ -201,7 +226,7 @@ const ContactSection = () => {
                             </>
                         )}
                     </button>
-                </form>
+                </div>
                 {/* Réseaux sociaux */}
                 <div style={{ flex: 1, minWidth: 280, maxWidth: 400 }}>
                     <h3 style={{ fontSize: 24, fontWeight: 400, marginBottom: 24 }}>Retrouvez-moi sur</h3>
@@ -214,6 +239,14 @@ const ContactSection = () => {
                                 style={socialCardStyle(social.color)}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(-2px)';
+                                    e.currentTarget.style.boxShadow = '0 8px 24px #0008';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                    e.currentTarget.style.boxShadow = '0 2px 12px #0004';
+                                }}
                             >
                                 <Icon style={{ width: 28, height: 28, color: social.color }} />
                                 <div>
@@ -245,4 +278,4 @@ const ContactSection = () => {
     );
 };
 
-export default ContactSection; 
+export default ContactSection;

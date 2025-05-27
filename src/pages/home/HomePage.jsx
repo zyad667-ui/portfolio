@@ -5,7 +5,9 @@ import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-mo
 import './partials/HomePage.css';
 import Carousel from "./partials/Carousel";
 import ContactSection from "./partials/contactSection";
+import Footer from "./partials/Footer";
 
+// --- AboutAnimation (repris tel quel) ---
 const AboutAnimation = () => {
     const [isVisible, setIsVisible] = useState(false);
     const container = {
@@ -466,6 +468,7 @@ const HomePage = () => {
             <section id="contact">
                 <ContactSection />
             </section>
+            <Footer />
         </div>
     );
 };
