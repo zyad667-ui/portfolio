@@ -4,8 +4,8 @@ import { loadFull } from 'tsparticles';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import './partials/HomePage.css';
 import Carousel from "./partials/Carousel";
+import ContactSection from "./partials/contactSection";
 
-// --- AboutAnimation (repris tel quel) ---
 const AboutAnimation = () => {
     const [isVisible, setIsVisible] = useState(false);
     const container = {
@@ -295,7 +295,7 @@ const HomePage = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg,rgb(4, 5, 8) 0%,hsl(272, 6.80%, 56.70%) 100%)',
                 overflow: 'hidden'
             }}>
                 <Particles
@@ -463,81 +463,8 @@ const HomePage = () => {
                 </p>
             </section>
             {/* Contact Section */}
-            <section id="contact" style={{
-                padding: '80px 20px',
-                background: '#f8f8f8',
-                textAlign: 'center'
-            }}>
-                <h3 style={{
-                    fontSize: '2rem',
-                    fontWeight: 500,
-                    letterSpacing: '2px',
-                    marginBottom: '40px',
-                    color: '#111'
-                }}>
-                    Contact
-                </h3>
-                <div style={{
-                    maxWidth: '600px',
-                    margin: '0 auto',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '20px'
-                }}>
-                    <p style={{ fontSize: '1.1rem', color: '#666' }}>
-                        Intéressé par une collaboration ? N'hésitez pas à me contacter !
-                    </p>
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
-                        <motion.a
-                            href="mailto:contact@zyadfiach.com"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            style={{
-                                display: 'inline-block',
-                                padding: '12px 24px',
-                                background: '#23232b',
-                                color: '#fff',
-                                borderRadius: '8px',
-                                textDecoration: 'none',
-                                fontWeight: 600
-                            }}
-                        >
-                            Email
-                        </motion.a>
-                        <motion.a
-                            href="https://linkedin.com/in/zyadfiach"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            style={{
-                                display: 'inline-block',
-                                padding: '12px 24px',
-                                background: '#0077b5',
-                                color: '#fff',
-                                borderRadius: '8px',
-                                textDecoration: 'none',
-                                fontWeight: 600
-                            }}
-                        >
-                            LinkedIn
-                        </motion.a>
-                        <motion.a
-                            href="https://github.com/zyadfiach"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            style={{
-                                display: 'inline-block',
-                                padding: '12px 24px',
-                                background: '#333',
-                                color: '#fff',
-                                borderRadius: '8px',
-                                textDecoration: 'none',
-                                fontWeight: 600
-                            }}
-                        >
-                            GitHub
-                        </motion.a>
-                    </div>
-                </div>
+            <section id="contact">
+                <ContactSection />
             </section>
         </div>
     );
