@@ -226,12 +226,17 @@ const AboutAnimation = () => {
     );
 };
 
+// Données des compétences pour le carousel
 const skillsItems = [
     {
         title: "Frontend",
         description: "JS, HTML, React, CSS, Sass, Git, Tailwind, Bootstrap.",
         icon: (
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="28" height="20" rx="3" stroke="#111" strokeWidth="2" /><rect x="8" y="12" width="8" height="4" rx="1" fill="#111" /><rect x="20" y="12" width="8" height="4" rx="1" fill="#111" /></svg>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="8" width="28" height="20" rx="3" stroke="#111" strokeWidth="2" />
+                <rect x="8" y="12" width="8" height="4" rx="1" fill="#111" />
+                <rect x="20" y="12" width="8" height="4" rx="1" fill="#111" />
+            </svg>
         ),
         id: 1,
     },
@@ -239,7 +244,11 @@ const skillsItems = [
         title: "Backend",
         description: "Node.js, Express, API REST, logique serveur moderne.",
         icon: (
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="10" rx="12" ry="4" stroke="#111" strokeWidth="2" /><ellipse cx="18" cy="18" rx="12" ry="4" stroke="#111" strokeWidth="2" /><ellipse cx="18" cy="26" rx="12" ry="4" stroke="#111" strokeWidth="2" /></svg>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="18" cy="10" rx="12" ry="4" stroke="#111" strokeWidth="2" />
+                <ellipse cx="18" cy="18" rx="12" ry="4" stroke="#111" strokeWidth="2" />
+                <ellipse cx="18" cy="26" rx="12" ry="4" stroke="#111" strokeWidth="2" />
+            </svg>
         ),
         id: 2,
     },
@@ -247,7 +256,10 @@ const skillsItems = [
         title: "Déploiement",
         description: "Vercel, Netlify, Docker, CI/CD pour la mise en ligne rapide.",
         icon: (
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 28V8M18 8L12 14M18 8L24 14" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /><rect x="6" y="28" width="24" height="4" rx="2" fill="#111" /></svg>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 28V8M18 8L12 14M18 8L24 14" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x="6" y="28" width="24" height="4" rx="2" fill="#111" />
+            </svg>
         ),
         id: 3,
     },
@@ -285,6 +297,7 @@ const HomePage = () => {
                     <a href="#contact" className="hero-btn">Me contacter</a>
                 </div>
             </section>
+
             <section className="skills" id="skills">
                 <h3 className="skills-title">Compétences</h3>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -299,13 +312,17 @@ const HomePage = () => {
                     />
                 </div>
             </section>
+
             <section className="projects" id="projects">
                 {/* Bloc projets ici */}
             </section>
+
             <section className="quote" id="quote">
                 {/* Citation inspirante ici */}
             </section>
+
             <AboutAnimation />
+
             <section className="contact" id="contact">
                 {/* Bloc contact/footer ici */}
             </section>

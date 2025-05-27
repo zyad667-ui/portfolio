@@ -2,8 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { FiCircle, FiCode, FiFileText, FiLayers, FiLayout } from "react-icons/fi";
 
-import "  "
-
 const DEFAULT_ITEMS = [
     {
         title: "Text Animations",
@@ -216,4 +214,4 @@ export default function Carousel({
             </div>
         </div>
     );
-} 
+}
