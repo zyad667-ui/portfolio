@@ -39,35 +39,34 @@ const ContactSection = () => {
         {
             name: 'LinkedIn',
             icon: Linkedin,
-            url: 'https://www.linkedin.com/in/zyad-fiach-708823224/', 
+            url: 'https://www.linkedin.com/in/zyad-fiach-708823224/',
             handle: '@zyad fiach',
             color: '#0077b5'
         },
         {
             name: 'Instagram',
             icon: Instagram,
-            url: 'https://www.instagram.com/zyad.fiach', 
+            url: 'https://www.instagram.com/zyad.fiach',
             handle: '@zyad fiach',
             color: '#e1306c'
         },
         {
             name: 'Twitter',
             icon: Twitter,
-            url: 'https://x.com/ZFiach', 
+            url: 'https://x.com/ZFiach',
             handle: '@zyad fiach',
             color: '#1da1f2'
         },
         {
             name: 'GitHub',
             icon: Github,
-            url: 'https://github.com/zyad667-ui', 
+            url: 'https://github.com/zyad667-ui',
             handle: '@zyad fiach',
             color: '#333'
         }
     ];
 
     const containerStyle = {
-        minHeight: '100vh',
         background: '#111',
         color: '#fff',
         padding: '60px 0'

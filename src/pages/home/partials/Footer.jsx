@@ -1,18 +1,23 @@
 import React from "react";
-import Silk from "./silk/Silk"; // Assuming Silk is a component that renders the silk effect
+import Silk from "./Silk";
 
 const footerStyle = {
     position: "relative",
     width: "100%",
-    minHeight: "220px",
-    overflow: "hidden",
+    minHeight: "120px",
     color: "#fff",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     fontFamily: "Inter, Helvetica Neue, Arial, sans-serif",
     fontSize: 18,
-    zIndex: 1,
+    textAlign: "center",
+    padding: "32px 16px 24px 16px",
+    boxSizing: "border-box",
+    letterSpacing: 0.5,
+    borderTop: "1px solid #333",
+    overflow: "hidden",
+    background: "none"
 };
 
 const overlayStyle = {
@@ -21,15 +26,14 @@ const overlayStyle = {
     left: 0,
     width: "100%",
     height: "100%",
-    zIndex: 2,
-    background: "rgba(20,20,30,0.45)", 
+    zIndex: 1,
+    background: "rgba(20,20,30,0.45)",
     pointerEvents: "none",
 };
 
 const contentStyle = {
     position: "relative",
-    zIndex: 3,
-    textAlign: "center",
+    zIndex: 2,
     width: "100%",
 };
 

@@ -6,6 +6,7 @@ import './partials/HomePage.css';
 import Carousel from "./partials/Carousel";
 import ContactSection from "./partials/contactSection";
 import Footer from "./partials/Footer";
+import Dither from "./partials/Dither";
 
 // --- AboutAnimation (repris tel quel) ---
 const AboutAnimation = () => {
@@ -21,22 +22,23 @@ const AboutAnimation = () => {
         justifyContent: 'center',
     };
     const button = {
-        background: "#111",
+        background: "#fff",
         borderRadius: "50px",
         padding: "16px 40px",
         color: "#fff",
         position: "relative",
         margin: '16px auto 0 auto',
-        border: "2px solid #111",
+        border: "2px solid #fff",
         cursor: "pointer",
-        fontWeight: "600",
+        fontWeight: "700",
         fontSize: "16px",
         letterSpacing: 0.5,
-        boxShadow: "0 8px 25px rgba(0,0,0,0.2)",
+        boxShadow: "0 8px 25px rgba(0,0,0,0.18)",
         transition: "all 0.3s cubic-bezier(.4,0,.2,1)",
         zIndex: 22,
         outline: 'none',
         display: 'block',
+        textShadow: '0 1px 8px #222a',
     };
     const overlay = {
         position: "fixed",
@@ -51,70 +53,97 @@ const AboutAnimation = () => {
     };
     const aboutContainer = {
         display: 'flex',
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 60,
+        gap: 40,
         marginTop: 30,
         zIndex: 30,
         position: 'relative',
         minHeight: 300,
-        minWidth: 800,
-        maxWidth: 1000,
-        transition: 'min-width 0.3s, min-height 0.3s',
+        minWidth: 0,
+        maxWidth: 900,
+        width: '90vw',
+        padding: 24,
+        background: 'rgba(30,30,30,0.98)',
+        borderRadius: 32,
+        boxShadow: '0 8px 40px 0 #000a',
+        border: '1.5px solid #333',
+        flexWrap: 'wrap',
     };
     const photoWrapper = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 200,
-        height: 200,
+        width: 120,
+        height: 120,
         borderRadius: '50%',
-        background: 'linear-gradient(135deg, #f8f9fa 0%, #e5e7eb 100%)',
+        background: 'linear-gradient(135deg, #23232b 0%, #444 100%)',
         padding: 4,
-        boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
         position: 'relative',
+        marginBottom: 18,
     };
     const aboutPhoto = {
-        width: 188,
-        height: 188,
+        width: 110,
+        height: 110,
         borderRadius: '50%',
         overflow: 'hidden',
-        background: '#fff',
-        boxShadow: '0 12px 40px rgba(0,0,0,0.2)',
-        border: '3px solid #e5e7eb',
+        background: '#222',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.18)',
+        border: '2px solid #444',
         transition: 'all 0.3s cubic-bezier(.4,0,.2,1)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
     };
     const aboutContent = {
-        minWidth: 400,
-        maxWidth: 650,
-        color: '#111',
-        background: '#fff',
-        borderRadius: 32,
-        padding: 48,
-        boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
-        backdropFilter: 'blur(10px)',
-        border: '2px solid #e5e7eb',
+        minWidth: 0,
+        maxWidth: 500,
+        color: '#fff',
+        background: 'transparent',
+        borderRadius: 24,
+        padding: 24,
+        boxShadow: 'none',
+        border: 'none',
+        textAlign: 'left',
     };
     const cvBtn = {
         display: 'inline-block',
         marginTop: 24,
         padding: '14px 32px',
-        background: '#111',
-        color: '#fff',
+        background: '#fff',
+        color: '#111',
         borderRadius: 50,
-        fontWeight: 600,
+        fontWeight: 700,
         textDecoration: 'none',
         fontSize: 16,
-        boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
-        border: '2px solid #111',
+        boxShadow: '0 8px 25px rgba(0,0,0,0.18)',
+        border: '2px solid #fff',
         transition: 'all 0.3s cubic-bezier(.4,0,.2,1)',
         letterSpacing: 0.5,
     };
+    // Ajout d'un style responsive
+    const responsiveStyle = `
+    @media (max-width: 700px) {
+        .about-modal-container {
+            flex-direction: column !important;
+            gap: 18px !important;
+            padding: 12px !important;
+        }
+        .about-modal-content {
+            padding: 10px !important;
+            max-width: 98vw !important;
+        }
+        .about-modal-photo {
+            width: 80px !important;
+            height: 80px !important;
+        }
+    }
+    `;
     return (
         <div style={container}>
+            <style>{responsiveStyle}</style>
             <AnimatePresence>
                 {isVisible && (
                     <motion.div
@@ -139,10 +168,11 @@ const AboutAnimation = () => {
                         transition={{ duration: 0.3 }}
                         whileTap={{ y: 2, scale: 0.97 }}
                         whileHover={{
-                            background: "transparent",
-                            color: "#111",
+                            background: "#fff",
+                            color: "#fff",
                             boxShadow: "0 12px 35px rgba(0,0,0,0.25)",
                             transform: "translateY(-2px)",
+                            border: "2px solid #fff"
                         }}
                     >
                         À propos de moi
@@ -153,19 +183,19 @@ const AboutAnimation = () => {
                 {isVisible && (
                     <motion.div
                         key="about-content"
-                        style={aboutContainer}
+                        style={{...aboutContainer, ...{className: 'about-modal-container'}}}
                         initial={{ opacity: 0, y: 60, scale: 0.8 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 60, scale: 0.8 }}
                         transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                     >
-                        <div style={photoWrapper}>
+                        <div style={{...photoWrapper, ...{className: 'about-modal-photo'}}}>
                             <motion.div
                                 style={aboutPhoto}
                                 whileHover={{
                                     boxShadow: '0 0 0 8px rgba(17,17,17,0.1), 0 20px 60px rgba(0,0,0,0.3)',
                                     transform: 'translateY(-8px) scale(1.05)',
-                                    borderColor: '#111',
+                                    borderColor: '#fff',
                                 }}
                                 transition={{ type: 'spring', stiffness: 200 }}
                             >
@@ -176,14 +206,14 @@ const AboutAnimation = () => {
                                 />
                             </motion.div>
                         </div>
-                        <motion.div style={aboutContent}
+                        <motion.div style={{...aboutContent, ...{className: 'about-modal-content'}}}
                             initial={{ opacity: 0, x: 60 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 60 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                         >
-                            <h3 style={{ fontSize: 36, fontWeight: 800, marginBottom: 20, color: '#111', letterSpacing: 1 }}>À propos de moi</h3>
-                            <p style={{ fontSize: 18, lineHeight: 1.7, color: '#555', marginBottom: 0 }}>
+                            <h3 style={{ fontSize: 32, fontWeight: 800, marginBottom: 18, color: '#fff', letterSpacing: 1 }}>À propos de moi</h3>
+                            <p style={{ fontSize: 16, lineHeight: 1.7, color: '#eee', marginBottom: 0 }}>
                                 Passionné par le développement web, je suis un développeur full stack junior avec une forte appétence pour les interfaces épurées, la logique métier et l'optimisation des process. J'aime apprendre, collaborer et relever de nouveaux défis techniques dans un environnement moderne et dynamique.
                             </p>
                             <motion.a
@@ -192,10 +222,11 @@ const AboutAnimation = () => {
                                 download
                                 whileHover={{
                                     scale: 1.05,
-                                    background: "transparent",
+                                    background: "#fff",
                                     color: "#111",
                                     boxShadow: "0 12px 35px rgba(0,0,0,0.25)",
-                                    transform: "translateY(-2px)"
+                                    transform: "translateY(-2px)",
+                                    border: "2px solid #fff"
                                 }}
                                 whileTap={{ scale: 0.95 }}
                             >
@@ -208,7 +239,7 @@ const AboutAnimation = () => {
             <AnimatePresence initial={false}>
                 {isVisible && (
                     <motion.button
-                        style={{ ...button, marginTop: 30 }}
+                        style={{ ...button, marginTop: 30, background: '#fff', color: '#fff', border: '2px solid #fff' }}
                         onClick={() => setIsVisible(false)}
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -216,10 +247,11 @@ const AboutAnimation = () => {
                         transition={{ duration: 0.3 }}
                         whileTap={{ y: 2, scale: 0.97 }}
                         whileHover={{
-                            background: "transparent",
-                            color: "#111",
+                            background: "#fff",
+                            color: "#fff",
                             boxShadow: "0 12px 35px rgba(0,0,0,0.25)",
                             transform: "translateY(-2px)",
+                            border: "2px solid #fff"
                         }}
                     >
                         Fermer
@@ -297,70 +329,12 @@ const HomePage = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: 'linear-gradient(135deg,rgb(4, 5, 8) 0%,hsl(272, 6.80%, 56.70%) 100%)',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                background: 'linear-gradient(135deg, #e8eafc 0%, #b6b8d6 100%)'
             }}>
-                <Particles
-                    id="tsparticles"
-                    init={particlesInit}
-                    options={{
-                        background: { color: 'transparent' },
-                        fpsLimit: 60,
-                        particles: {
-                            color: { value: '#111' },
-                            links: {
-                                enable: true,
-                                color: '#111',
-                                distance: 120,
-                                opacity: 0.2,
-                                width: 1
-                            },
-                            move: {
-                                enable: true,
-                                speed: 0.8,
-                                direction: "none",
-                                random: false,
-                                straight: false,
-                                outModes: {
-                                    default: "bounce",
-                                },
-                            },
-                            number: { value: 40 },
-                            opacity: {
-                                value: 0.3,
-                                animation: {
-                                    enable: true,
-                                    speed: 1,
-                                    minimumValue: 0.1,
-                                }
-                            },
-                            shape: { type: 'circle' },
-                            size: {
-                                value: 2,
-                                animation: {
-                                    enable: true,
-                                    speed: 2,
-                                    minimumValue: 0.5,
-                                }
-                            },
-                        },
-                        detectRetina: true,
-                        interactivity: {
-                            events: {
-                                onHover: {
-                                    enable: true,
-                                    mode: "repulse",
-                                },
-                            },
-                            modes: {
-                                repulse: {
-                                    distance: 100,
-                                    duration: 0.4,
-                                },
-                            },
-                        },
-                    }}
-                />
+                <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+                    <Dither waveColor={[0.9, 0.9, 1]} colorNum={8} pixelSize={1} />
+                </div>
                 <div style={{
                     position: 'relative',
                     zIndex: 2,
