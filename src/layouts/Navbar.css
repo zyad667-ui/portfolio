@@ -1,59 +1,59 @@
 .navbar {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    z-index: 100;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.01);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  z-index: 100;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.01);
 }
-
 .navbar-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
 }
-
 .navbar-logo {
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #111;
-    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #111;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
-
 .navbar-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
+  display: flex;
+  gap: 32px;
+  list-style: none;
 }
-
 .navbar-links a {
-    font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: 1px;
-    color: #111;
-    padding: 4px 0;
-    border-bottom: 2px solid transparent;
-    transition: border 0.2s, color 0.2s;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #111;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: border 0.2s, color 0.2s;
 }
-
 .navbar-links a:hover {
-    color: #888;
-    border-bottom: 2px solid #111;
+  color: #888;
+  border-bottom: 2px solid #111;
 }
-
 @media (max-width: 700px) {
-    .navbar-container {
-        flex-direction: column;
-        gap: 10px;
-        padding: 12px 10px;
-    }
-
-    .navbar-links {
-        gap: 18px;
-    }
+  .navbar-container {
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 10px;
+  }
+  .navbar-links {
+    gap: 18px;
+  }
 }
+.logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  filter: grayscale(1) contrast(1.1);
+} 

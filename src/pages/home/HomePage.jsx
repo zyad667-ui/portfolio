@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
-import './HomePage.css'; // Assurez-vous que le fichier CSS est correctement importé
+import './partials/HomePage.css'; // Corrected path to match your file structure
 
 const HomePage = () => {
     const particlesInit = useCallback(async (engine) => {
