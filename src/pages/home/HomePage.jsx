@@ -3,6 +3,7 @@ import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 import { motion, AnimatePresence } from 'framer-motion';
 import './partials/HomePage.css';
+import Carousel from "./partials/Carousel";
 
 const AboutAnimation = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -225,6 +226,33 @@ const AboutAnimation = () => {
     );
 };
 
+const skillsItems = [
+    {
+        title: "Frontend",
+        description: "JS, HTML, React, CSS, Sass, Git, Tailwind, Bootstrap.",
+        icon: (
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="28" height="20" rx="3" stroke="#111" strokeWidth="2" /><rect x="8" y="12" width="8" height="4" rx="1" fill="#111" /><rect x="20" y="12" width="8" height="4" rx="1" fill="#111" /></svg>
+        ),
+        id: 1,
+    },
+    {
+        title: "Backend",
+        description: "Node.js, Express, API REST, logique serveur moderne.",
+        icon: (
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="10" rx="12" ry="4" stroke="#111" strokeWidth="2" /><ellipse cx="18" cy="18" rx="12" ry="4" stroke="#111" strokeWidth="2" /><ellipse cx="18" cy="26" rx="12" ry="4" stroke="#111" strokeWidth="2" /></svg>
+        ),
+        id: 2,
+    },
+    {
+        title: "Déploiement",
+        description: "Vercel, Netlify, Docker, CI/CD pour la mise en ligne rapide.",
+        icon: (
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 28V8M18 8L12 14M18 8L24 14" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /><rect x="6" y="28" width="24" height="4" rx="2" fill="#111" /></svg>
+        ),
+        id: 3,
+    },
+];
+
 const HomePage = () => {
     const particlesInit = useCallback(async (engine) => {
         await loadFull(engine);
@@ -259,28 +287,16 @@ const HomePage = () => {
             </section>
             <section className="skills" id="skills">
                 <h3 className="skills-title">Compétences</h3>
-                <div className="skills-grid">
-                    <div className="skill-block">
-                        <div className="skill-icon">{/* Frontend */}
-                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="28" height="20" rx="3" stroke="#111" strokeWidth="2" /><rect x="8" y="12" width="8" height="4" rx="1" fill="#111" /><rect x="20" y="12" width="8" height="4" rx="1" fill="#111" /></svg>
-                        </div>
-                        <h4>Frontend</h4>
-                        <p>JS, HTML, React, CSS, Sass, Git, Tailwind, Bootstrap.</p>
-                    </div>
-                    <div className="skill-block">
-                        <div className="skill-icon">{/* Backend */}
-                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="18" cy="10" rx="12" ry="4" stroke="#111" strokeWidth="2" /><ellipse cx="18" cy="18" rx="12" ry="4" stroke="#111" strokeWidth="2" /><ellipse cx="18" cy="26" rx="12" ry="4" stroke="#111" strokeWidth="2" /></svg>
-                        </div>
-                        <h4>Backend</h4>
-                        <p>Node.js, Express, API REST, logique serveur moderne.</p>
-                    </div>
-                    <div className="skill-block">
-                        <div className="skill-icon">{/* Deploy */}
-                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 28V8M18 8L12 14M18 8L24 14" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /><rect x="6" y="28" width="24" height="4" rx="2" fill="#111" /></svg>
-                        </div>
-                        <h4>Déploiement</h4>
-                        <p>Vercel, Netlify, Docker, CI/CD pour la mise en ligne rapide.</p>
-                    </div>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Carousel
+                        items={skillsItems}
+                        baseWidth={350}
+                        autoplay={true}
+                        autoplayDelay={3000}
+                        pauseOnHover={true}
+                        loop={true}
+                        round={false}
+                    />
                 </div>
             </section>
             <section className="projects" id="projects">
