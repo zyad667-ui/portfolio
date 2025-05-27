@@ -1,36 +1,37 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useRef, useEffect } from 'react';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import './partials/HomePage.css';
 import Carousel from "./partials/Carousel";
 
+// --- AboutAnimation (repris tel quel) ---
 const AboutAnimation = () => {
     const [isVisible, setIsVisible] = useState(false);
     const container = {
         display: "flex",
         flexDirection: "column",
-        width: 340,
-        minHeight: 220,
+        width: 380,
+        minHeight: 240,
         position: "relative",
-        margin: "0 auto",
+        margin: "60px auto",
         alignItems: 'center',
         justifyContent: 'center',
     };
     const button = {
-        background: "#23232b",
-        borderRadius: "16px",
-        padding: "16px 36px",
+        background: "#111",
+        borderRadius: "50px",
+        padding: "16px 40px",
         color: "#fff",
         position: "relative",
-        margin: '12px auto 0 auto',
-        border: "none",
+        margin: '16px auto 0 auto',
+        border: "2px solid #111",
         cursor: "pointer",
-        fontWeight: "700",
-        fontSize: "18px",
-        letterSpacing: 1,
-        boxShadow: "0 4px 24px 0 rgba(0,0,0,0.28)",
-        transition: "all 0.22s cubic-bezier(.4,2,.6,1)",
+        fontWeight: "600",
+        fontSize: "16px",
+        letterSpacing: 0.5,
+        boxShadow: "0 8px 25px rgba(0,0,0,0.2)",
+        transition: "all 0.3s cubic-bezier(.4,0,.2,1)",
         zIndex: 22,
         outline: 'none',
         display: 'block',
@@ -41,81 +42,74 @@ const AboutAnimation = () => {
         left: 0,
         width: "100vw",
         height: "100vh",
-        background: "rgba(10,10,20,0.82)",
+        background: "rgba(0,0,0,0.6)",
         zIndex: 20,
-        backdropFilter: 'blur(3px)',
+        backdropFilter: 'blur(8px)',
         pointerEvents: isVisible ? "auto" : "none"
     };
     const aboutContainer = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 56,
-        marginTop: 24,
+        gap: 60,
+        marginTop: 30,
         zIndex: 30,
         position: 'relative',
-        minHeight: 260,
-        minWidth: 700,
-        maxWidth: 900,
+        minHeight: 300,
+        minWidth: 800,
+        maxWidth: 1000,
         transition: 'min-width 0.3s, min-height 0.3s',
     };
     const photoWrapper = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 180,
-        height: 180,
+        width: 200,
+        height: 200,
         borderRadius: '50%',
-        background: '#23232b',
-        padding: 3,
-        boxShadow: '0 0 32px 0 #23232b44',
+        background: 'linear-gradient(135deg, #f8f9fa 0%, #e5e7eb 100%)',
+        padding: 4,
+        boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
         position: 'relative',
     };
     const aboutPhoto = {
-        width: 168,
-        height: 168,
+        width: 188,
+        height: 188,
         borderRadius: '50%',
         overflow: 'hidden',
-        background: '#18181c',
-        boxShadow: '0 0 0 0 #0000, 0 8px 40px rgba(0,0,0,0.28)',
-        border: '2.5px solid #23232b',
-        transition: 'box-shadow 0.3s, transform 0.3s',
+        background: '#fff',
+        boxShadow: '0 12px 40px rgba(0,0,0,0.2)',
+        border: '3px solid #e5e7eb',
+        transition: 'all 0.3s cubic-bezier(.4,0,.2,1)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
     };
     const aboutContent = {
-        minWidth: 340,
-        maxWidth: 600,
-        color: '#f3f3f3',
-        background: '#18181c',
-        borderRadius: 24,
+        minWidth: 400,
+        maxWidth: 650,
+        color: '#111',
+        background: '#fff',
+        borderRadius: 32,
         padding: 48,
-        boxShadow: '0 8px 32px rgba(0,0,0,0.22)',
-        backdropFilter: 'blur(8px)',
-        border: '1.5px solid #444',
+        boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
+        backdropFilter: 'blur(10px)',
+        border: '2px solid #e5e7eb',
     };
     const cvBtn = {
         display: 'inline-block',
-        marginTop: 20,
-        padding: '12px 28px',
-        background: '#23232b',
+        marginTop: 24,
+        padding: '14px 32px',
+        background: '#111',
         color: '#fff',
-        borderRadius: 10,
-        fontWeight: 700,
+        borderRadius: 50,
+        fontWeight: 600,
         textDecoration: 'none',
         fontSize: 16,
-        boxShadow: '0 4px 18px rgba(0,0,0,0.18)',
-        border: 'none',
-        transition: 'all 0.18s cubic-bezier(.4,2,.6,1)',
-    };
-    const showButton = {
-        ...button,
-        margin: '0 auto 0 auto',
-    };
-    const hideButton = {
-        ...button,
-        margin: '0 auto 0 auto',
+        boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
+        border: '2px solid #111',
+        transition: 'all 0.3s cubic-bezier(.4,0,.2,1)',
+        letterSpacing: 0.5,
     };
     return (
         <div style={container}>
@@ -127,7 +121,7 @@ const AboutAnimation = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.45, ease: "easeInOut" }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
                     />
                 )}
             </AnimatePresence>
@@ -135,20 +129,21 @@ const AboutAnimation = () => {
                 {!isVisible && (
                     <motion.button
                         key="show"
-                        style={showButton}
+                        style={button}
                         onClick={() => setIsVisible(true)}
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
+                        exit={{ opacity: 0, y: 20 }}
                         transition={{ duration: 0.3 }}
                         whileTap={{ y: 2, scale: 0.97 }}
                         whileHover={{
-                            background: "#444",
-                            boxShadow: "0 8px 32px 0 #4448",
-                            letterSpacing: 2,
+                            background: "transparent",
+                            color: "#111",
+                            boxShadow: "0 12px 35px rgba(0,0,0,0.25)",
+                            transform: "translateY(-2px)",
                         }}
                     >
-                        Afficher
+                        À propos de moi
                     </motion.button>
                 )}
             </AnimatePresence>
@@ -157,19 +152,20 @@ const AboutAnimation = () => {
                     <motion.div
                         key="about-content"
                         style={aboutContainer}
-                        initial={{ opacity: 0, y: 40, scale: 0.85, boxShadow: '0 0 0 0 #0000' }}
-                        animate={{ opacity: 1, y: 0, scale: 1, boxShadow: '0 8px 32px 0 #0008' }}
-                        exit={{ opacity: 0, y: 40, scale: 0.85, boxShadow: '0 0 0 0 #0000' }}
-                        transition={{ type: 'spring', stiffness: 80, damping: 18 }}
+                        initial={{ opacity: 0, y: 60, scale: 0.8 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 60, scale: 0.8 }}
+                        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                     >
                         <div style={photoWrapper}>
                             <motion.div
                                 style={aboutPhoto}
                                 whileHover={{
-                                    boxShadow: '0 0 0 10px #ccc8, 0 16px 48px #4448',
-                                    transform: 'translateY(-6px) scale(1.04)',
+                                    boxShadow: '0 0 0 8px rgba(17,17,17,0.1), 0 20px 60px rgba(0,0,0,0.3)',
+                                    transform: 'translateY(-8px) scale(1.05)',
+                                    borderColor: '#111',
                                 }}
-                                transition={{ type: 'spring', stiffness: 180 }}
+                                transition={{ type: 'spring', stiffness: 200 }}
                             >
                                 <img
                                     src="https://randomuser.me/api/portraits/men/32.jpg"
@@ -179,21 +175,27 @@ const AboutAnimation = () => {
                             </motion.div>
                         </div>
                         <motion.div style={aboutContent}
-                            initial={{ opacity: 0, x: 40 }}
+                            initial={{ opacity: 0, x: 60 }}
                             animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: 40 }}
-                            transition={{ duration: 0.7, delay: 0.18 }}
+                            exit={{ opacity: 0, x: 60 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
                         >
-                            <h3 style={{ fontSize: 32, fontWeight: 800, marginBottom: 16, color: '#fff', letterSpacing: 1, marginTop: 12 }}>À propos de moi</h3>
-                            <p style={{ fontSize: 19, lineHeight: 1.7, color: '#ccc', marginBottom: 0 }}>
-                                Passionné par le développement web, je suis un développeur full stack junior avec une forte appétence pour les interfaces épurées, la logique métier et l'optimisation des process. J'aime apprendre, collaborer et relever de nouveaux défis techniques.
+                            <h3 style={{ fontSize: 36, fontWeight: 800, marginBottom: 20, color: '#111', letterSpacing: 1 }}>À propos de moi</h3>
+                            <p style={{ fontSize: 18, lineHeight: 1.7, color: '#555', marginBottom: 0 }}>
+                                Passionné par le développement web, je suis un développeur full stack junior avec une forte appétence pour les interfaces épurées, la logique métier et l'optimisation des process. J'aime apprendre, collaborer et relever de nouveaux défis techniques dans un environnement moderne et dynamique.
                             </p>
                             <motion.a
                                 href="file:///C:/Users/lionsgeek/Downloads/cv%20zyad%20fiach.pdf"
                                 style={cvBtn}
                                 download
-                                whileHover={{ scale: 1.08, boxShadow: "0 8px 32px #1a237e55" }}
-                                whileTap={{ scale: 0.97 }}
+                                whileHover={{
+                                    scale: 1.05,
+                                    background: "transparent",
+                                    color: "#111",
+                                    boxShadow: "0 12px 35px rgba(0,0,0,0.25)",
+                                    transform: "translateY(-2px)"
+                                }}
+                                whileTap={{ scale: 0.95 }}
                             >
                                 Télécharger mon CV
                             </motion.a>
@@ -204,21 +206,21 @@ const AboutAnimation = () => {
             <AnimatePresence initial={false}>
                 {isVisible && (
                     <motion.button
-                        key="hide"
-                        style={hideButton}
+                        style={{ ...button, marginTop: 30 }}
                         onClick={() => setIsVisible(false)}
-                        initial={{ opacity: 0, y: -10 }}
+                        initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
+                        exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3 }}
                         whileTap={{ y: 2, scale: 0.97 }}
                         whileHover={{
-                            background: "#444",
-                            boxShadow: "0 8px 32px 0 #4448",
-                            letterSpacing: 2,
+                            background: "transparent",
+                            color: "#111",
+                            boxShadow: "0 12px 35px rgba(0,0,0,0.25)",
+                            transform: "translateY(-2px)",
                         }}
                     >
-                        Masquer
+                        Fermer
                     </motion.button>
                 )}
             </AnimatePresence>
@@ -226,42 +228,56 @@ const AboutAnimation = () => {
     );
 };
 
-// Données des compétences pour le carousel
+// --- Compétences (skillsItems) ---
 const skillsItems = [
     {
-        title: "Frontend",
-        description: "JS, HTML, React, CSS, Sass, Git, Tailwind, Bootstrap.",
+        title: "Frontend Development",
+        description: "JavaScript, React, HTML5, CSS3, Sass, Tailwind CSS, Bootstrap pour des interfaces modernes et responsives.",
         icon: (
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="4" y="8" width="28" height="20" rx="3" stroke="#111" strokeWidth="2" />
-                <rect x="8" y="12" width="8" height="4" rx="1" fill="#111" />
-                <rect x="20" y="12" width="8" height="4" rx="1" fill="#111" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="4" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="2" />
+                <rect x="5" y="7" width="6" height="3" rx="1" fill="currentColor" />
+                <rect x="13" y="7" width="6" height="3" rx="1" fill="currentColor" />
+                <rect x="5" y="12" width="14" height="2" rx="1" fill="currentColor" />
             </svg>
         ),
         id: 1,
     },
     {
-        title: "Backend",
-        description: "Node.js, Express, API REST, logique serveur moderne.",
+        title: "Backend Development",
+        description: "Node.js, Express.js, API REST, gestion de bases de données et architecture serveur robuste.",
         icon: (
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="18" cy="10" rx="12" ry="4" stroke="#111" strokeWidth="2" />
-                <ellipse cx="18" cy="18" rx="12" ry="4" stroke="#111" strokeWidth="2" />
-                <ellipse cx="18" cy="26" rx="12" ry="4" stroke="#111" strokeWidth="2" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="12" cy="5" rx="9" ry="3" stroke="currentColor" strokeWidth="2" />
+                <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" stroke="currentColor" strokeWidth="2" />
+                <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" stroke="currentColor" strokeWidth="2" />
             </svg>
         ),
         id: 2,
     },
     {
-        title: "Déploiement",
-        description: "Vercel, Netlify, Docker, CI/CD pour la mise en ligne rapide.",
+        title: "DevOps & Deployment",
+        description: "Vercel, Netlify, Docker, CI/CD, Git pour un déploiement rapide et une intégration continue.",
         icon: (
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 28V8M18 8L12 14M18 8L24 14" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <rect x="6" y="28" width="24" height="4" rx="2" fill="#111" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" stroke="currentColor" strokeWidth="2" fill="none" />
+                <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
         ),
         id: 3,
+    },
+    {
+        title: "UI/UX Design",
+        description: "Design thinking, prototypage, interfaces utilisateur intuitives et expérience utilisateur optimisée.",
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+                <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+                <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+                <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+            </svg>
+        ),
+        id: 4,
     },
 ];
 
@@ -271,60 +287,257 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div className="portfolio-root">
-            <section className="hero" id="hero">
+        <div style={{ fontFamily: 'Inter, Helvetica Neue, Arial, sans-serif' }}>
+            {/* Hero Section */}
+            <section id="hero" style={{
+                position: 'relative',
+                minHeight: '70vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                overflow: 'hidden'
+            }}>
                 <Particles
                     id="tsparticles"
                     init={particlesInit}
                     options={{
-                        background: { color: '#fff' },
+                        background: { color: 'transparent' },
                         fpsLimit: 60,
                         particles: {
-                            color: { value: '#000' },
-                            links: { enable: true, color: '#000', distance: 150 },
-                            move: { enable: true, speed: 1 },
-                            number: { value: 60 },
-                            opacity: { value: 0.2 },
+                            color: { value: '#111' },
+                            links: {
+                                enable: true,
+                                color: '#111',
+                                distance: 120,
+                                opacity: 0.2,
+                                width: 1
+                            },
+                            move: {
+                                enable: true,
+                                speed: 0.8,
+                                direction: "none",
+                                random: false,
+                                straight: false,
+                                outModes: {
+                                    default: "bounce",
+                                },
+                            },
+                            number: { value: 40 },
+                            opacity: {
+                                value: 0.3,
+                                animation: {
+                                    enable: true,
+                                    speed: 1,
+                                    minimumValue: 0.1,
+                                }
+                            },
                             shape: { type: 'circle' },
-                            size: { value: 2 },
+                            size: {
+                                value: 2,
+                                animation: {
+                                    enable: true,
+                                    speed: 2,
+                                    minimumValue: 0.5,
+                                }
+                            },
                         },
                         detectRetina: true,
+                        interactivity: {
+                            events: {
+                                onHover: {
+                                    enable: true,
+                                    mode: "repulse",
+                                },
+                            },
+                            modes: {
+                                repulse: {
+                                    distance: 100,
+                                    duration: 0.4,
+                                },
+                            },
+                        },
                     }}
                 />
-                <div className="hero-content">
-                    <h1>Zyad Fiach</h1>
-                    <h2>Développeur Full Stack Junior</h2>
-                    <a href="#contact" className="hero-btn">Me contacter</a>
+                <div style={{
+                    position: 'relative',
+                    zIndex: 2,
+                    textAlign: 'center',
+                    color: '#fff'
+                }}>
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        style={{
+                            fontSize: '3rem',
+                            fontWeight: 700,
+                            letterSpacing: '3px',
+                            marginBottom: '18px'
+                        }}
+                    >
+                        Zyad Fiach
+                    </motion.h1>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        style={{
+                            fontSize: '1.5rem',
+                            fontWeight: 300,
+                            letterSpacing: '2px',
+                            marginBottom: '32px'
+                        }}
+                    >
+                        Développeur Full Stack Junior
+                    </motion.h2>
+                    <motion.a
+                        href="#contact"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        style={{
+                            display: 'inline-block',
+                            padding: '12px 32px',
+                            background: 'rgba(255, 255, 255, 0.1)',
+                            border: '1px solid #fff',
+                            color: '#fff',
+                            fontSize: '1.1rem',
+                            borderRadius: '24px',
+                            textDecoration: 'none',
+                            backdropFilter: 'blur(2px)',
+                            transition: 'all 0.3s ease'
+                        }}
+                    >
+                        Me contacter
+                    </motion.a>
                 </div>
             </section>
-
-            <section className="skills" id="skills">
-                <h3 className="skills-title">Compétences</h3>
+            {/* Skills Section */}
+            <section id="skills" style={{
+                background: '#fafafa',
+                padding: '80px 20px'
+            }}>
+                <h3 style={{
+                    textAlign: 'center',
+                    fontSize: '2rem',
+                    fontWeight: 500,
+                    letterSpacing: '2px',
+                    marginBottom: '60px',
+                    color: '#111'
+                }}>
+                    Compétences
+                </h3>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Carousel
                         items={skillsItems}
                         baseWidth={350}
                         autoplay={true}
-                        autoplayDelay={3000}
-                        pauseOnHover={true}
-                        loop={true}
-                        round={false}
+                        autoplayDelay={4000}
                     />
                 </div>
             </section>
-
-            <section className="projects" id="projects">
-                {/* Bloc projets ici */}
+            {/* About Section */}
+            <section id="about">
+                <AboutAnimation />
             </section>
-
-            <section className="quote" id="quote">
-                {/* Citation inspirante ici */}
+            {/* Projects Section */}
+            <section id="projects" style={{
+                padding: '80px 20px',
+                background: '#fff',
+                textAlign: 'center'
+            }}>
+                <h3 style={{
+                    fontSize: '2rem',
+                    fontWeight: 500,
+                    letterSpacing: '2px',
+                    marginBottom: '40px',
+                    color: '#111'
+                }}>
+                    Projets
+                </h3>
+                <p style={{ color: '#666', fontSize: '1.1rem' }}>
+                    Section en cours de développement...
+                </p>
             </section>
-
-            <AboutAnimation />
-
-            <section className="contact" id="contact">
-                {/* Bloc contact/footer ici */}
+            {/* Contact Section */}
+            <section id="contact" style={{
+                padding: '80px 20px',
+                background: '#f8f8f8',
+                textAlign: 'center'
+            }}>
+                <h3 style={{
+                    fontSize: '2rem',
+                    fontWeight: 500,
+                    letterSpacing: '2px',
+                    marginBottom: '40px',
+                    color: '#111'
+                }}>
+                    Contact
+                </h3>
+                <div style={{
+                    maxWidth: '600px',
+                    margin: '0 auto',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '20px'
+                }}>
+                    <p style={{ fontSize: '1.1rem', color: '#666' }}>
+                        Intéressé par une collaboration ? N'hésitez pas à me contacter !
+                    </p>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
+                        <motion.a
+                            href="mailto:contact@zyadfiach.com"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            style={{
+                                display: 'inline-block',
+                                padding: '12px 24px',
+                                background: '#23232b',
+                                color: '#fff',
+                                borderRadius: '8px',
+                                textDecoration: 'none',
+                                fontWeight: 600
+                            }}
+                        >
+                            Email
+                        </motion.a>
+                        <motion.a
+                            href="https://linkedin.com/in/zyadfiach"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            style={{
+                                display: 'inline-block',
+                                padding: '12px 24px',
+                                background: '#0077b5',
+                                color: '#fff',
+                                borderRadius: '8px',
+                                textDecoration: 'none',
+                                fontWeight: 600
+                            }}
+                        >
+                            LinkedIn
+                        </motion.a>
+                        <motion.a
+                            href="https://github.com/zyadfiach"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            style={{
+                                display: 'inline-block',
+                                padding: '12px 24px',
+                                background: '#333',
+                                color: '#fff',
+                                borderRadius: '8px',
+                                textDecoration: 'none',
+                                fontWeight: 600
+                            }}
+                        >
+                            GitHub
+                        </motion.a>
+                    </div>
+                </div>
             </section>
         </div>
     );
