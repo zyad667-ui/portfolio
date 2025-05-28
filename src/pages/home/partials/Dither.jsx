@@ -171,7 +171,6 @@ function DitheredWaves({
     mouseRadius
 }) {
     const mesh = useRef(null);
-    const effect = useRef(null);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const { viewport, size, gl } = useThree();
 
@@ -194,14 +193,6 @@ function DitheredWaves({
         const currentRes = waveUniformsRef.current.resolution.value;
         if (currentRes.x !== newWidth || currentRes.y !== newHeight) {
             currentRes.set(newWidth, newHeight);
-            if (
-                effect.current &&
-                effect.current.uniforms &&
-                effect.current.uniforms.resolution &&
-                effect.current.uniforms.resolution.value
-            ) {
-                effect.current.uniforms.resolution.value.set(newWidth, newHeight);
-            }
         }
     }, [size, gl]);
 
@@ -217,10 +208,6 @@ function DitheredWaves({
         waveUniformsRef.current.mouseRadius.value = mouseRadius;
         if (enableMouseInteraction) {
             waveUniformsRef.current.mousePos.value.set(mousePos.x, mousePos.y);
-        }
-        if (effect.current) {
-            effect.current.colorNum = colorNum;
-            effect.current.pixelSize = pixelSize;
         }
     });
 
@@ -243,9 +230,6 @@ function DitheredWaves({
                     uniforms={waveUniformsRef.current}
                 />
             </mesh>
-            <EffectComposer>
-                <RetroEffect ref={effect} />
-            </EffectComposer>
             <mesh
                 onPointerMove={handlePointerMove}
                 position={[0, 0, 0.01]}

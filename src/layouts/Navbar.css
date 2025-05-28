@@ -59,11 +59,53 @@
 }
 
 .logo-img {
-    height: 44px;
-    width: auto;
+    height: 100px;
+    width: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    max-height: 100px;
     display: block;
     margin: 0 auto;
     filter: grayscale(1) contrast(1.1);
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: none;
+    transition: transform 0.35s cubic-bezier(.4, 0, .2, 1), box-shadow 0.35s cubic-bezier(.4, 0, .2, 1), filter 0.35s cubic-bezier(.4, 0, .2, 1);
+}
+
+.logo-img-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: box-shadow 0.35s cubic-bezier(.4, 0, .2, 1), background 0.35s cubic-bezier(.4, 0, .2, 1), border 0.35s cubic-bezier(.4, 0, .2, 1);
+}
+
+.logo-img-btn:hover,
+.logo-img-btn:focus {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2.5px solid #b6b8d6;
+    box-shadow:
+        0 0 0 0px rgba(182, 184, 214, 0.10),
+        0 0 32px 12px rgba(182, 184, 214, 0.18),
+        0 8px 32px 0 rgba(0, 0, 0, 0.10);
+}
+
+.styled-logo-img {
+    border-radius: 50%;
+    transition: transform 0.35s cubic-bezier(.4, 0, .2, 1), box-shadow 0.35s cubic-bezier(.4, 0, .2, 1), filter 0.35s cubic-bezier(.4, 0, .2, 1);
+}
+
+.styled-logo-img:hover,
+.logo-img-btn:focus .styled-logo-img {
+    transform: scale(1.13) rotate(-3deg);
+    filter: grayscale(0) contrast(1.2);
 }
 
 .navbar-burger {
@@ -148,4 +190,52 @@
         color: #222;
         border-bottom: 1px solid #111;
     }
+}
+
+.animated-logo {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #fff;
+    z-index: 1;
+    background: transparent;
+    padding: 0;
+    transition: box-shadow 0.35s cubic-bezier(.4, 0, .2, 1);
+}
+
+.animated-logo .logo-bg {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #3b5999;
+    /* Mets ici la couleur que tu veux pour l'effet */
+    transition: top 0.5s;
+    z-index: 2;
+    border-radius: 50%;
+}
+
+.animated-logo:hover .logo-bg,
+.animated-logo:focus .logo-bg {
+    top: 0;
+}
+
+.animated-logo .logo-img {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: filter 0.35s, transform 0.35s;
+}
+
+.animated-logo:hover .logo-img,
+.animated-logo:focus .logo-img {
+    filter: brightness(1.1) grayscale(0) contrast(1.2);
+    transform: scale(1.08) rotate(-3deg);
 }

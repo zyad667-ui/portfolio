@@ -7,6 +7,7 @@ import Carousel from "./partials/Carousel";
 import ContactSection from "./partials/contactSection";
 import Footer from "./partials/Footer";
 import Dither from "./partials/Dither";
+import ProjectsSection from "./partials/ProjectsSection";
 
 // --- AboutAnimation (repris tel quel) ---
 const AboutAnimation = () => {
@@ -183,13 +184,13 @@ const AboutAnimation = () => {
                 {isVisible && (
                     <motion.div
                         key="about-content"
-                        style={{...aboutContainer, ...{className: 'about-modal-container'}}}
+                        style={{ ...aboutContainer, ...{ className: 'about-modal-container' } }}
                         initial={{ opacity: 0, y: 60, scale: 0.8 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 60, scale: 0.8 }}
                         transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                     >
-                        <div style={{...photoWrapper, ...{className: 'about-modal-photo'}}}>
+                        <div style={{ ...photoWrapper, ...{ className: 'about-modal-photo' } }}>
                             <motion.div
                                 style={aboutPhoto}
                                 whileHover={{
@@ -206,7 +207,7 @@ const AboutAnimation = () => {
                                 />
                             </motion.div>
                         </div>
-                        <motion.div style={{...aboutContent, ...{className: 'about-modal-content'}}}
+                        <motion.div style={{ ...aboutContent, ...{ className: 'about-modal-content' } }}
                             initial={{ opacity: 0, x: 60 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 60 }}
@@ -217,9 +218,10 @@ const AboutAnimation = () => {
                                 Passionné par le développement web, je suis un développeur full stack junior avec une forte appétence pour les interfaces épurées, la logique métier et l'optimisation des process. J'aime apprendre, collaborer et relever de nouveaux défis techniques dans un environnement moderne et dynamique.
                             </p>
                             <motion.a
-                                href="file:///C:/Users/lionsgeek/Downloads/cv%20zyad%20fiach.pdf"
+                                href="https://www.canva.com/design/DAGEFQ0cXMc/M51SYlZ6V-ZoMyXaxUoQPg/view"
                                 style={cvBtn}
-                                download
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 whileHover={{
                                     scale: 1.05,
                                     background: "#fff",
@@ -266,7 +268,7 @@ const AboutAnimation = () => {
 const skillsItems = [
     {
         title: "Frontend Development",
-        description: "JavaScript, React, HTML5, CSS3, Sass, Tailwind CSS, Bootstrap pour des interfaces modernes et responsives.",
+        description: "React, JavaScript, HTML5, CSS3, Sass",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="2" y="4" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="2" />
@@ -279,7 +281,7 @@ const skillsItems = [
     },
     {
         title: "Backend Development",
-        description: "Node.js, Express.js, API REST, gestion de bases de données et architecture serveur robuste.",
+        description: "Node.js, PHP, Laravel, Bash",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <ellipse cx="12" cy="5" rx="9" ry="3" stroke="currentColor" strokeWidth="2" />
@@ -290,8 +292,8 @@ const skillsItems = [
         id: 2,
     },
     {
-        title: "DevOps & Deployment",
-        description: "Vercel, Netlify, Docker, CI/CD, Git pour un déploiement rapide et une intégration continue.",
+        title: "Outils & Versioning",
+        description: "Git",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" stroke="currentColor" strokeWidth="2" fill="none" />
@@ -301,8 +303,8 @@ const skillsItems = [
         id: 3,
     },
     {
-        title: "UI/UX Design",
-        description: "Design thinking, prototypage, interfaces utilisateur intuitives et expérience utilisateur optimisée.",
+        title: "Autres",
+        description: "Bash, Laravel, PHP",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
@@ -425,18 +427,7 @@ const HomePage = () => {
                 background: '#fff',
                 textAlign: 'center'
             }}>
-                <h3 style={{
-                    fontSize: '2rem',
-                    fontWeight: 500,
-                    letterSpacing: '2px',
-                    marginBottom: '40px',
-                    color: '#111'
-                }}>
-                    Projets
-                </h3>
-                <p style={{ color: '#666', fontSize: '1.1rem' }}>
-                    Section en cours de développement...
-                </p>
+                <ProjectsSection />
             </section>
             {/* Contact Section */}
             <section id="contact">
