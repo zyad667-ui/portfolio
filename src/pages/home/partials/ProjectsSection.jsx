@@ -165,7 +165,7 @@ const ProjectsSection = () => (
         }
         `}</style>
         <div className="section-header">
-            <h2 className="section-title">My Projects</h2>
+            <h2 className="section-title">Featured Projects</h2>
             <p className="section-subtitle">Explore my latest work and creative solutions that showcase modern web development, innovative design, and cutting-edge technology.</p>
         </div>
         <div className="projects-grid">
@@ -187,12 +187,6 @@ const ProjectsSection = () => (
                     <span className="tech-tag">ESLint</span>
                 </div>
                 <div className="project-links">
-                    <a href="#" className="project-link link-primary">
-                        <span>View Live</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18 13V19C18 19.5523 17.5523 20 17 20H5C4.44772 20 4 19.5523 4 19V7C4 6.44772 4.44772 6 5 6H11M15 3H21V9M10 14L21 3" />
-                        </svg>
-                    </a>
                     <a href="https://github.com/zyad667-ui/ebrand" className="project-link link-secondary">GitHub</a>
                 </div>
             </div>
@@ -214,12 +208,6 @@ const ProjectsSection = () => (
                     <span className="tech-tag">ESLint</span>
                 </div>
                 <div className="project-links">
-                    <a href="#" className="project-link link-primary">
-                        <span>View Live</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18 13V19C18 19.5523 17.5523 20 17 20H5C4.44772 20 4 19.5523 4 19V7C4 6.44772 4.44772 6 5 6H11M15 3H21V9M10 14L21 3" />
-                        </svg>
-                    </a>
                     <a href="https://github.com/zyad667-ui/book-store" className="project-link link-secondary">GitHub</a>
                 </div>
             </div>
@@ -244,12 +232,6 @@ const ProjectsSection = () => (
                     <span className="tech-tag">API Integration</span>
                 </div>
                 <div className="project-links">
-                    <a href="#" className="project-link link-primary">
-                        <span>View Live</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18 13V19C18 19.5523 17.5523 20 17 20H5C4.44772 20 4 19.5523 4 19V7C4 6.44772 4.44772 6 5 6H11M15 3H21V9M10 14L21 3" />
-                        </svg>
-                    </a>
                     <a href="https://github.com/zyad667-ui/movies-catalogue-" className="project-link link-secondary">GitHub</a>
                 </div>
             </div>
@@ -276,12 +258,6 @@ const ProjectsSection = () => (
                     <span className="tech-tag">DOM Manipulation</span>
                 </div>
                 <div className="project-links">
-                    <a href="#" className="project-link link-primary">
-                        <span>View Live</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18 13V19C18 19.5523 17.5523 20 17 20H5C4.44772 20 4 19.5523 4 19V7C4 6.44772 4.44772 6 5 6H11M15 3H21V9M10 14L21 3" />
-                        </svg>
-                    </a>
                     <a href="https://github.com/zyad667-ui/tic-tac-toe-" className="project-link link-secondary">GitHub</a>
                 </div>
             </div>
