@@ -1,7 +1,5 @@
-import { useCallback, useState, useRef, useEffect } from 'react';
-import Particles from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
-import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './partials/HomePage.css';
 import Carousel from "./partials/Carousel";
 import ContactSection from "./partials/contactSection";
@@ -188,23 +186,6 @@ const AboutAnimation = () => {
                         exit={{ opacity: 0, y: 60, scale: 0.8 }}
                         transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                     >
-                        {/* <div style={{ ...photoWrapper, ...{ className: 'about-modal-photo' } }}>
-                            <motion.div
-                                style={aboutPhoto}
-                                whileHover={{
-                                    boxShadow: '0 0 0 8px rgba(17,17,17,0.1), 0 20px 60px rgba(0,0,0,0.3)',
-                                    transform: 'translateY(-8px) scale(1.05)',
-                                    borderColor: '#fff',
-                                }}
-                                transition={{ type: 'spring', stiffness: 200 }}
-                            >
-                                <img
-                                    src="https://randomuser.me/api/portraits/men/32.jpg"
-                                    alt="Portrait Zyad Fiach"
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
-                                />
-                            </motion.div>
-                        </div> */}
                         <motion.div style={{ ...aboutContent, ...{ className: 'about-modal-content' } }}
                             initial={{ opacity: 0, x: 60 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -302,7 +283,7 @@ const skillsItems = [
     },
     {
         title: "Autres",
-        description: "Bash, Laravel, PHP",
+        description: "Divers outils et scripts",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
@@ -316,10 +297,6 @@ const skillsItems = [
 ];
 
 const HomePage = () => {
-    const particlesInit = useCallback(async (engine) => {
-        await loadFull(engine);
-    }, []);
-
     return (
         <div style={{ fontFamily: 'Inter, Helvetica Neue, Arial, sans-serif' }}>
             {/* Hero Section */}
