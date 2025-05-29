@@ -2,7 +2,7 @@
     position: sticky;
     top: 0;
     width: 100%;
-    background: #fff;
+    background: #fff !important;
     border-bottom: 1px solid #eee;
     z-index: 100;
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.01);
@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 32px;
+    padding: 8px 32px;
 }
 
 .navbar-logo {
@@ -59,12 +59,12 @@
 }
 
 .logo-img {
-    height: 100px;
-    width: 100px;
-    min-width: 100px;
-    min-height: 100px;
-    max-width: 100px;
-    max-height: 100px;
+    height: 60px;
+    width: 60px;
+    min-width: 60px;
+    min-height: 60px;
+    max-width: 60px;
+    max-height: 60px;
     display: block;
     margin: 0 auto;
     filter: grayscale(1) contrast(1.1);

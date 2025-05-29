@@ -8,8 +8,6 @@
 html,
 body {
     font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-    background: #111;
-    color: #111;
     min-height: 100vh;
     scroll-behavior: smooth;
 }

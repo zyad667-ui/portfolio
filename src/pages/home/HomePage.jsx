@@ -334,9 +334,6 @@ const HomePage = () => {
                 overflow: 'hidden',
                 background: 'linear-gradient(135deg, #e8eafc 0%, #b6b8d6 100%)'
             }}>
-                <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-                    <Dither waveColor={[0.9, 0.9, 1]} colorNum={8} pixelSize={1} />
-                </div>
                 <div style={{
                     position: 'relative',
                     zIndex: 2,
