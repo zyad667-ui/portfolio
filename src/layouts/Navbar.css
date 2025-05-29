@@ -3,9 +3,9 @@
     top: 0;
     width: 100%;
     background: #fff !important;
-    border-bottom: 1px solid #eee;
+    border-bottom: none;
     z-index: 100;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.01);
+    box-shadow: none;
 }
 
 .navbar-container {
@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 32px;
+    padding: px 32px;
 }
 
 .navbar-logo {

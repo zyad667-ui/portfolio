@@ -6,10 +6,8 @@ import './partials/HomePage.css';
 import Carousel from "./partials/Carousel";
 import ContactSection from "./partials/contactSection";
 import Footer from "./partials/Footer";
-import Dither from "./partials/Dither";
 import ProjectsSection from "./partials/ProjectsSection";
 
-// --- AboutAnimation (repris tel quel) ---
 const AboutAnimation = () => {
     const [isVisible, setIsVisible] = useState(false);
     const container = {
@@ -23,7 +21,7 @@ const AboutAnimation = () => {
         justifyContent: 'center',
     };
     const button = {
-        background: "#fff",
+        background: "black",
         borderRadius: "50px",
         padding: "16px 40px",
         color: "#fff",
@@ -190,7 +188,7 @@ const AboutAnimation = () => {
                         exit={{ opacity: 0, y: 60, scale: 0.8 }}
                         transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                     >
-                        <div style={{ ...photoWrapper, ...{ className: 'about-modal-photo' } }}>
+                        {/* <div style={{ ...photoWrapper, ...{ className: 'about-modal-photo' } }}>
                             <motion.div
                                 style={aboutPhoto}
                                 whileHover={{
@@ -206,7 +204,7 @@ const AboutAnimation = () => {
                                     style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
                                 />
                             </motion.div>
-                        </div>
+                        </div> */}
                         <motion.div style={{ ...aboutContent, ...{ className: 'about-modal-content' } }}
                             initial={{ opacity: 0, x: 60 }}
                             animate={{ opacity: 1, x: 0 }}
