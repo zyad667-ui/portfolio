@@ -307,8 +307,22 @@ const HomePage = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 overflow: 'hidden',
-                background: 'linear-gradient(135deg, #e8eafc 0%, #b6b8d6 100%)'
+                background: 'linear-gradient(135deg, #e8eafc 0%, #b6b8d6 100%)',
+                backgroundImage: 'url(https://i.pinimg.com/736x/40/7a/bd/407abdfc944960d269c2ae1ea049f105.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
             }}>
+                {/* Overlay semi-transparent */}
+                <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    background: 'rgba(0,0,0,0.45)',
+                    zIndex: 1
+                }} />
                 <div style={{
                     position: 'relative',
                     zIndex: 2,
