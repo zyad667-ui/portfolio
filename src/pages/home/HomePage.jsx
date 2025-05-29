@@ -307,7 +307,7 @@ const HomePage = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 overflow: 'hidden',
-                background: 'linear-gradient(135deg, #e8eafc 0%, #b6b8d6 100%)',
+                background: 'linear-gradient(135deg,#0c0c0e 0%,hsl(240, 3.00%, 93.50%) 100%)',
                 backgroundImage: 'url(https://i.pinimg.com/736x/40/7a/bd/407abdfc944960d269c2ae1ea049f105.jpg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
