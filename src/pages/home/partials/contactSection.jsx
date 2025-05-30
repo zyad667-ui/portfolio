@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, User, MessageSquare, Send, Linkedin, Instagram, Twitter, Github } from 'lucide-react';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
     const [formData, setFormData] = useState({
@@ -23,30 +23,33 @@ const ContactSection = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        const SERVICE_ID = 'service_qx7729v';
-        const TEMPLATE_ID = 'template_n9cs1yc';
-        const USER_ID = 'mIKI9raxt1ulbcbid'; 
+        const serviceId = 'service_qx7729v';
+        const templateId = 'template_n9cs1yc';
+        const publicKey = '-juw639GSXChtzwse';
 
-        emailjs.send(
-            SERVICE_ID,
-            TEMPLATE_ID,
-            formData,
-            USER_ID
-        )
-        .then((result) => {
-            alert('Message envoyé avec succès !');
-            setFormData({
-                name: '',
-                email: '',
-                phone: '',
-                subject: '',
-                description: ''
+        const templateParams = {
+            from_name: formData.name,
+            from_email: formData.email,
+            message: formData.description,
+            subject: formData.subject,
+        };
+
+        emailjs.send(serviceId, templateId, templateParams, publicKey)
+            .then((response) => {
+                console.log('Email sent successfully!', response);
+                setFormData({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    subject: '',
+                    description: ''
+                });
+                setIsSubmitting(false);
+            })
+            .catch((error) => {
+                console.error('Error sending email:', error);
+                setIsSubmitting(false);
             });
-            setIsSubmitting(false);
-        }, (error) => {
-            alert("Erreur lors de l'envoi du message.");
-            setIsSubmitting(false);
-        });
     };
 
 
