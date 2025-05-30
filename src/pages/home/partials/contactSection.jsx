@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, User, MessageSquare, Send, Linkedin, Instagram, Twitter, Github } from 'lucide-react';
+import emailjs from 'emailjs-com';
 
 const ContactSection = () => {
     const [formData, setFormData] = useState({
@@ -21,7 +22,18 @@ const ContactSection = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-        setTimeout(() => {
+
+        const SERVICE_ID = 'service_qx7729v';
+        const TEMPLATE_ID = 'template_n9cs1yc';
+        const USER_ID = 'mIKI9raxt1ulbcbid'; 
+
+        emailjs.send(
+            SERVICE_ID,
+            TEMPLATE_ID,
+            formData,
+            USER_ID
+        )
+        .then((result) => {
             alert('Message envoyé avec succès !');
             setFormData({
                 name: '',
@@ -31,7 +43,10 @@ const ContactSection = () => {
                 description: ''
             });
             setIsSubmitting(false);
-        }, 2000);
+        }, (error) => {
+            alert("Erreur lors de l'envoi du message.");
+            setIsSubmitting(false);
+        });
     };
 
 
